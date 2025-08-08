@@ -79,6 +79,9 @@ app.get('/api/rhino/metrics', optimizationController.getPerformanceMetrics.bind(
 app.post('/api/rhino/topopt', upload.single('file'), optimizationController.executeTopOpt.bind(optimizationController));
 app.post('/api/rhino/hops', upload.single('file'), optimizationController.executeHops.bind(optimizationController));
 
+// Back-compat alias used by frontend
+app.post('/api/optimize', upload.single('file'), optimizationController.executeTopOpt.bind(optimizationController));
+
 // VM Health Check (updated to use localhost)
 app.get('/api/rhino/vm-health', async (req, res) => {
   try {
@@ -94,102 +97,43 @@ app.get('/api/rhino/vm-health', async (req, res) => {
 });
 
 // AI Enhanced Routes
-app.post('/api/ai/complete', async (req, res) => {
-  try {
-    const result = await aiEnhancedController.complete(req, res);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+app.post('/api/ai/complete', (req, res) => aiEnhancedController.complete?.(req, res));
 
-app.post('/api/ai/geometry/analyze', async (req, res) => {
-  try {
-    const result = await aiEnhancedController.analyzeGeometryWithAI(req.body);
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+app.post('/api/ai/geometry/analyze', (req, res) => aiEnhancedController.analyzeGeometryWithAI(req, res));
 
-app.post('/api/ai/parameters/optimize', async (req, res) => {
-  try {
-    const result = await aiEnhancedController.optimizeParametersWithAI(req.body);
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+app.post('/api/ai/parameters/optimize', (req, res) => aiEnhancedController.optimizeParametersWithAI(req, res));
 
-app.post('/api/ai/natural-language/convert', async (req, res) => {
-  try {
-    const result = await aiEnhancedController.naturalLanguageToOperation(req.body);
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+app.post('/api/ai/natural-language/convert', (req, res) => aiEnhancedController.naturalLanguageToOperation(req, res));
 
-app.get('/api/ai/metrics', async (req, res) => {
-  try {
-    const result = await aiEnhancedController.getAIServiceMetrics();
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+app.post('/api/ai/error/diagnose', (req, res) => aiEnhancedController.diagnoseAndResolveError(req, res));
+
+app.post('/api/ai/performance/recommendations', (req, res) => aiEnhancedController.getPerformanceRecommendations(req, res));
+
+app.get('/api/ai/metrics', (req, res) => aiEnhancedController.getAIServiceMetrics(req, res));
 
 // OpenAI API validation endpoint
-app.get('/api/ai/validate', async (req, res) => {
-  try {
-    const result = await aiEnhancedController.validateAPIConnection();
-    if (result.success) {
-      res.json(result);
-    } else {
-      res.status(500).json(result);
-    }
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+app.get('/api/ai/validate', (req, res) => aiEnhancedController.validateAPIConnection(req, res));
 
 // OpenAI Responses API endpoint
-app.post('/api/ai/responses', async (req, res) => {
-  try {
-    const result = await aiEnhancedController.useResponsesAPI(req, res);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+app.post('/api/ai/responses', (req, res) => aiEnhancedController.useResponsesAPI?.(req, res));
 
-// Validate OpenAI API configuration before starting server
-async function validateAndStartServer() {
+// Start server without hard-failing on AI validation
+async function startServer() {
   try {
-    // Validate OpenAI API configuration
-    const apiValidation = await aiEnhancedController.validateAPIConnection();
-    if (!apiValidation.success) {
-      console.error('OpenAI API validation failed:', apiValidation.error);
-      process.exit(1);
+    let apiValidation;
+    try {
+      apiValidation = await aiEnhancedController.validateAPIConnection({},{ json: (x)=>x, status: ()=>({ json: ()=>{} }) });
+      // best-effort; do not block startup
+    } catch (e) {
+      console.warn('OpenAI API validation failed (non-fatal):', e.message);
     }
 
-    // Start server if validation succeeds
     app.listen(PORT, () => {
       console.log(`Soft backend server listening on port ${PORT}`);
       console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`Rhino.Compute URL: ${rhinoConfig.url}`);
-      console.log('OpenAI API configuration validated successfully');
-      
-      if (apiValidation.data?.configuration) {
+      if (apiValidation?.data?.configuration) {
         console.log(`API Version: ${apiValidation.data.configuration.apiVersion}`);
-      }
-      
-      if (apiValidation.data?.models?.required) {
-        const availableModels = Object.entries(apiValidation.data.models.required)
-          .filter(([_, available]) => available)
-          .map(([model]) => model)
-          .join(', ');
-        if (availableModels) {
-          console.log(`Required Models: ${availableModels}`);
-        }
       }
     });
   } catch (error) {
@@ -198,4 +142,8 @@ async function validateAndStartServer() {
   }
 }
 
+<<<<<<< Current (Your changes)
 validateAndStartServer();
+=======
+startServer();
+>>>>>>> Incoming (Background Agent changes)
