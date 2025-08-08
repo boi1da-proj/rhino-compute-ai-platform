@@ -1,6 +1,6 @@
 {
   "artifact_index_version": "1.0.0",
-  "generated_at": "2025-08-08T15:15:17Z",
+  "generated_at": "2025-08-08T15:47:44Z",
   "project": {
     "name": "ShadowCodeRhinoGrasshopper",
     "root": ".",
@@ -10,15 +10,15 @@
     {
       "type": "grasshopper-definition",
       "path": "gh/topopt.ghx",
-      "size_bytes": 0,
-      "digest_sha256": "MISSING",
+      "size_bytes": 5861,
+      "digest_sha256": "2ccd521b7e43398c920c34255c9f1da808fcfc7df7f153edb7b450214c0b51e0",
       "description": "Client graph: reads cfg/config.json, calls Rhino.Compute (hops.ghx)."
     },
     {
       "type": "grasshopper-definition",
       "path": "gh/hops.ghx",
-      "size_bytes": 0,
-      "digest_sha256": "MISSING",
+      "size_bytes": 1285,
+      "digest_sha256": "74150e56aff7621a1a57b3180feb0718e8f168ca17275a7cd0e8811f181e1a8f",
       "description": "Compute-side graph: DesignVariables+Iterations \u2192 BestDesign+Status."
     },
     {

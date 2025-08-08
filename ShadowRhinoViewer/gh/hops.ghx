@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GH_Document>
+  <!-- Rhino 8 minimal GHX with a single C# script. Open in Rhino 8 and re-save to normalize. -->
+  <Definition nickName="hops" description="Compute-side: DesignVariables, Iterations → BestDesign, Status" preview="true">
+    <Chunk name="ScriptCSharp" nickName="ComputeSolver" guid="e1111111-1111-1111-1111-111111111111">
+      <Code><![CDATA[
+// Inputs: List<double> DesignVariables, int Iterations
+// Outputs: List<double> BestDesign, string Status
+using System; using System.Collections.Generic;
+void RunScript(List<double> DesignVariables, int Iterations, ref object BestDesign, ref object Status)
+{
+  var best = new List<double>();
+  for (int i = 0; i < (DesignVariables?.Count ?? 0); i++) best.Add(DesignVariables[i] * 0.1);
+  BestDesign = best; Status = $"OK (iters={Iterations}, n={best.Count})";
+}
+      ]]></Code>
+      <Inputs>
+        <Input name="DesignVariables" type="System.Double" access="list" />
+        <Input name="Iterations" type="System.Int32" access="item" default="5" />
+      </Inputs>
+      <Outputs>
+        <Output name="BestDesign" type="System.Double" access="list" />
+        <Output name="Status" type="System.String" access="item" />
+      </Outputs>
+    </Chunk>
+  </Definition>
+</GH_Document>
