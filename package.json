@@ -1,0 +1,45 @@
+{
+  "name": "soft-geometry-frontend",
+  "version": "1.0.0",
+  "description": "Soft.Geometry Frontend - AI-Enhanced 3D Geometry Viewer with Rutten-Backed Architecture",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && echo 'Build complete - ready for deployment'"
+  },
+  "dependencies": {
+    "@types/three": "^0.179.0",
+    "three": "^0.179.1",
+    "three-stdlib": "^2.36.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "compute-rhino3d": "^0.12.1",
+    "openai": "^4.28.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
+  "keywords": [
+    "soft-geometry",
+    "rhino-compute",
+    "grasshopper",
+    "3d-modeling",
+    "ai-enhanced",
+    "topology-optimization"
+  ],
+  "author": "Soft.Geometry Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boi1da-proj/rhino-compute-ai-platform.git"
+  }
+}

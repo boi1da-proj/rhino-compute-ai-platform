@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ghdocument>
+  <chunks count="2">
+    <chunk index="0">
+      <items count="3">
+        <item name="Hops" type="gh_hops" version="0">
+          <pos x="0" y="0" />
+          <input name="Url" type="gh_string" data="/grasshopper/execute/TopOpt/Execute" />
+          <input name="ApiKey" type="gh_string" data="p2robot-13a6-48f3-b24e-2025computeX" />
+          <input name="BrepId" type="gh_guid" />
+          <input name="Factor" type="gh_number" data="0.5" />
+          <input name="MeshParameters" type="gh_string" data="{}" />
+          <output name="OptimizedMesh" type="gh_mesh" />
+          <output name="Success" type="gh_boolean" />
+          <output name="Error" type="gh_string" />
+          <output name="ProcessingTime" type="gh_number" />
+        </item>
+        <item name="Panel" type="gh_panel" version="0">
+          <pos x="300" y="0" />
+          <input name="Text" type="gh_string" data="Hops Configuration" />
+        </item>
+        <item name="Text" type="gh_text" version="0">
+          <pos x="500" y="0" />
+          <input name="Text" type="gh_string" data="TopOpt/Execute Endpoint" />
+        </item>
+      </items>
+      <connections count="2">
+        <connection input="Panel" input_index="0" output="Hops" output_index="0" />
+        <connection input="Text" input_index="0" output="Hops" output_index="0" />
+      </connections>
+    </chunk>
+    <chunk index="1">
+      <items count="4">
+        <item name="Slider" type="gh_slider" version="0">
+          <pos x="0" y="100" />
+          <input name="Value" type="gh_number" data="0.5" />
+          <input name="Min" type="gh_number" data="0.1" />
+          <input name="Max" type="gh_number" data="1.0" />
+          <input name="Steps" type="gh_integer" data="100" />
+        </item>
+        <item name="Panel" type="gh_panel" version="0">
+          <pos x="200" y="100" />
+          <input name="Text" type="gh_string" data="Optimization Factor" />
+        </item>
+        <item name="Button" type="gh_button" version="0">
+          <pos x="0" y="200" />
+          <input name="Text" type="gh_string" data="Execute TopOpt" />
+        </item>
+        <item name="Toggle" type="gh_toggle" version="0">
+          <pos x="200" y="200" />
+          <input name="Value" type="gh_boolean" data="False" />
+        </item>
+      </items>
+      <connections count="2">
+        <connection input="Panel" input_index="0" output="Slider" output_index="0" />
+        <connection input="Toggle" input_index="0" output="Button" output_index="0" />
+      </connections>
+    </chunk>
+  </chunks>
+</ghdocument>
