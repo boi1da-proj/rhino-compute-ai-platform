@@ -170,12 +170,12 @@ function App() {
       }, 5000);
 
     } catch (err) {
-      const errorMessage = this.getErrorMessage(err);
+      const errorMessage = getErrorMessage(err);
       setError(errorMessage);
       setRetryCount(prev => prev + 1);
       
       // Auto-retry for certain errors
-      if (this.shouldRetry(err) && retryCount < maxRetries) {
+      if (shouldRetry(err) && retryCount < maxRetries) {
         setTimeout(() => {
           setError(`Retrying... (${retryCount + 1}/${maxRetries})`);
           handleOptimize();
@@ -338,7 +338,7 @@ function App() {
             className={`nav-tab ${activeTab === 'geometry-viewer' ? 'active' : ''}`}
             onClick={() => setActiveTab('geometry-viewer')}
           >
-            �� Geometry Viewer
+            📐 Geometry Viewer
           </button>
         </div>
       </div>
@@ -740,9 +740,10 @@ function App() {
   );
 
   return (
-    <div className="app">
+    <div>
       <Navigation />
-      {activeTab === 'optimization' ? <OptimizationPage /> : <GeometryViewerPage />}
+      {activeTab === 'optimization' && <OptimizationPage />}
+      {activeTab === 'geometry-viewer' && <GeometryViewerPage />}
     </div>
   );
 }

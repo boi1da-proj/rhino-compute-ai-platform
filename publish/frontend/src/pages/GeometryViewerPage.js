@@ -169,7 +169,7 @@ const GeometryViewerPage = () => {
     <div className="geometry-viewer-page">
       <div className="geometry-viewer-header">
         <h1>🎨 Geometry Viewer</h1>
-        <p>3D Geometry Visualization with GitHub @[Main] Agent Integration</p>
+        <p>3D Geometry Visualization</p>
       </div>
 
       <div className="geometry-viewer-controls">
