@@ -3,6 +3,6 @@
   "artifact_index_path": "artifact_index.json",
   "runtime_type": "process",
   "sandbox_policy": "isolated",
-  "default_environment": "dev",
+  "default_environment": "stage",
   "os": "windows"
 }
