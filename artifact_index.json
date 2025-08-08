@@ -1,0 +1,26 @@
+{
+  "artifact_index_version": 1,
+  "generated_at": "2025-08-08T12:00:00Z",
+  "project": "HelloEtoGH",
+  "assets": [
+    {
+      "asset_id": "hello-eto-gh-001",
+      "name": "Hello Eto Grasshopper-Style UI",
+      "type": "ui-app",
+      "path": "HelloEtoGH.csproj",
+      "version": "0.1.0",
+      "checksum": "sha256-REPLACE-WITH-CALCULATED-SUM",
+      "dependencies": ["Eto.Forms", "Eto.Platform", "RhinoCommon"],
+      "shadow_deployment": {
+        "runtime_type": "container",
+        "sandbox_policy": "isolated",
+        "os": ["windows", "macos"]
+      },
+      "environment": "dev",
+      "timestamp": "2025-08-08T12:00:00Z",
+      "notes": "Initial minimal Eto Hello World with Grasshopper-style host stub."
+    }
+  ],
+  "generator": "assistant",
+  "notes": "Use this scaffold to bootstrap a Rhino/Grasshopper UI prototype with artifact-index traceability."
+}
