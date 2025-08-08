@@ -1,0 +1,20 @@
+{
+  "artifact_index_version": "1.0.0",
+  "generated_at": "2025-08-08T00:00:00Z",
+  "project": {"name": "ShadowCodeRhinoGrasshopper","root": ".","shadow_mode_default":"Compute"},
+  "assets": [
+    {"type":"grasshopper-definition","path":"gh/topopt.ghx","size_bytes":0,"digest_sha256":"TO_BE_FILLED_BY_INDEXER","description":"Client graph: reads cfg/config.json, calls Rhino.Compute (hops.ghx)."},
+    {"type":"grasshopper-definition","path":"gh/hops.ghx","size_bytes":0,"digest_sha256":"TO_BE_FILLED_BY_INDEXER","description":"Compute-side graph: DesignVariables+Iterations → BestDesign+Status."},
+    {"type":"json","path":"cfg/config.json","size_bytes":0,"digest_sha256":"TO_BE_FILLED_BY_INDEXER","description":"Baked ComputeUrl, ApiKey, AuthToken, Workspace."},
+    {"type":"shell","path":"scripts/deploy_setup.sh","size_bytes":0,"digest_sha256":"TO_BE_FILLED_BY_INDEXER","description":"Optional: verify Compute and copy GH files on host."},
+    {"type":"script","path":"tools/index_artifact_index.py","size_bytes":0,"digest_sha256":"TO_BE_FILLED_BY_INDEXER","description":"One-command artifact index generator."}
+  ],
+  "shadow_deploy": {"sandbox":["Compute","Process"],"compute_url_ref":"cfg/config.json:ComputeUrl","headers":{"RhinoComputeKey_ref":"cfg/config.json:ApiKey","Authorization_ref":"cfg/config.json:AuthToken"}},
+  "references": [
+    {"name":"Rhino docs","url":"https://docs.mcneel.com"},
+    {"name":"Grasshopper dev","url":"https://developer.rhino3d.com/grasshopper/"},
+    {"name":"Rhino.Compute","url":"https://developer.rhino3d.com/guides/rhinocommon"},
+    {"name":"Shadow Code article","url":"https://ieatbugsforbreakfast.com/2025/04/24/shadow-code/"}
+  ],
+  "runs": []
+}
