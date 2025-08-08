@@ -1,0 +1,8 @@
+{
+  "shadow_module_path": "shadow_modules/gh_shadow_compute.py",
+  "artifact_index_path": "artifact_index.json",
+  "runtime_type": "process",
+  "sandbox_policy": "isolated",
+  "default_environment": "dev",
+  "os": "windows"
+}
