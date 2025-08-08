@@ -29,7 +29,8 @@ const AIEnhancedInterface = () => {
         setAiMetrics(data.data);
       }
     } catch (error) {
-      console.error('Failed to load AI metrics:', error);
+      // Non-fatal in UI; keep working without metrics
+      console.warn('Failed to load AI metrics:', error.message);
     }
   };
 
@@ -48,14 +49,14 @@ const AIEnhancedInterface = () => {
           endpoint = '/api/ai/natural-language/convert';
           requestBody = {
             userRequest: userInput,
-            availableOperations: [] // Will be populated with actual operations
+            availableOperations: []
           };
           break;
 
         case 'geometry-analysis':
           endpoint = '/api/ai/geometry/analyze';
           requestBody = {
-            geometryData: 'sample-geometry-data', // Replace with actual geometry data
+            geometryData: 'sample-geometry-data',
             analysisType: 'comprehensive',
             context: { userInput }
           };

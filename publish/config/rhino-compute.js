@@ -12,6 +12,43 @@ module.exports = {
   retryDelay: parseInt(process.env.RHINO_COMPUTE_RETRY_DELAY) || 1000,
   localTestMode: process.env.LOCAL_TEST_MODE === 'true',
   
+  // Expose a stable url field for callers expecting it
+  url: process.env.RHINO_COMPUTE_URL || 'http://localhost:80',
+
+  // Helper: headers for Rhino.Compute requests
+  getHeaders() {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    if (this.apiKey) {
+      headers['RhinoComputeKey'] = this.apiKey;
+    }
+    return headers;
+  },
+
+  // Helper: current timeout
+  getTimeout() {
+    return this.timeout;
+  },
+
+  // Helper: check service health/version
+  async getServiceStatus() {
+    try {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), this.timeout);
+      const res = await fetch(`${this.baseUrl}/version`, { signal: controller.signal });
+      clearTimeout(id);
+      if (!res.ok) {
+        return { ok: false, error: `HTTP ${res.status}` };
+      }
+      const data = await res.json().catch(() => ({}));
+      return { ok: true, version: data?.Version || data?.version || 'unknown' };
+    } catch (err) {
+      return { ok: false, error: err.message };
+    }
+  },
+  
   // Grasshopper Hops configuration
   hops: {
     enabled: process.env.HOPS_ENABLED !== 'false',
@@ -107,6 +144,7 @@ module.exports = {
     sslEnabled: process.env.SSL_ENABLED === 'true',
     corsOrigins: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : [
       'https://www.softlyplease.com',
+      'https://softlyplease.com',
       'http://localhost:3000',
       'http://localhost:80'
     ]
