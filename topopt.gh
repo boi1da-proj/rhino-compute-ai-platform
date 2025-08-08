@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ghdocument>
+  <chunks count="3">
+    <chunk index="0">
+      <items count="4">
+        <item name="ArchiveObject" type="gh_archiveobject" version="0">
+          <pos x="0" y="0" />
+          <input name="Definition" type="gh_string" data="Hops" />
+          <input name="Name" type="gh_string" data="TopOpt Execute" />
+        </item>
+        <item name="Hops" type="gh_hops" version="0">
+          <pos x="200" y="0" />
+          <input name="Url" type="gh_string" data="/grasshopper/execute/TopOpt/Execute" />
+          <input name="ApiKey" type="gh_string" data="p2robot-13a6-48f3-b24e-2025computeX" />
+          <input name="BrepId" type="gh_guid" />
+          <input name="Factor" type="gh_number" data="0.5" />
+          <input name="MeshParameters" type="gh_string" data="{}" />
+          <output name="OptimizedMesh" type="gh_mesh" />
+          <output name="Success" type="gh_boolean" />
+          <output name="Error" type="gh_string" />
+        </item>
+        <item name="Panel" type="gh_panel" version="0">
+          <pos x="400" y="0" />
+          <input name="Text" type="gh_string" data="TopOpt Optimization Result" />
+        </item>
+        <item name="Mesh" type="gh_mesh" version="0">
+          <pos x="600" y="0" />
+          <input name="Mesh" type="gh_mesh" />
+        </item>
+      </items>
+      <connections count="3">
+        <connection input="Hops" input_index="0" output="ArchiveObject" output_index="0" />
+        <connection input="Panel" input_index="0" output="Hops" output_index="0" />
+        <connection input="Mesh" input_index="0" output="Hops" output_index="0" />
+      </connections>
+    </chunk>
+    <chunk index="1">
+      <items count="2">
+        <item name="Slider" type="gh_slider" version="0">
+          <pos x="0" y="100" />
+          <input name="Value" type="gh_number" data="0.5" />
+          <input name="Min" type="gh_number" data="0.1" />
+          <input name="Max" type="gh_number" data="1.0" />
+          <input name="Steps" type="gh_integer" data="100" />
+        </item>
+        <item name="Panel" type="gh_panel" version="0">
+          <pos x="200" y="100" />
+          <input name="Text" type="gh_string" data="Optimization Factor: 0.5" />
+        </item>
+      </items>
+      <connections count="1">
+        <connection input="Panel" input_index="0" output="Slider" output_index="0" />
+      </connections>
+    </chunk>
+    <chunk index="2">
+      <items count="1">
+        <item name="Button" type="gh_button" version="0">
+          <pos x="0" y="200" />
+          <input name="Text" type="gh_string" data="Run Optimization" />
+        </item>
+      </items>
+    </chunk>
+  </chunks>
+</ghdocument>

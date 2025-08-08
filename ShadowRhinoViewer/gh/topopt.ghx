@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GH_Document>
+  <!-- Rhino 8 minimal GHX: ReadConfig + CallCompute. Open and re-save in Rhino 8 to normalize. -->
+  <Definition nickName="topopt" description="Client graph calling Rhino.Compute hops.ghx" preview="true">
+    <Chunk name="ScriptCSharp" nickName="ReadConfig" guid="f1111111-1111-1111-1111-111111111111">
+      <Code><![CDATA[
+// Inputs: string ConfigPath
+// Outputs: string ComputeUrl, string ApiKey, string AuthToken
+using System; using System.IO; using System.Collections.Generic; using System.Web.Script.Serialization;
+void RunScript(string ConfigPath, ref object ComputeUrl, ref object ApiKey, ref object AuthToken)
+{
+  string path = string.IsNullOrWhiteSpace(ConfigPath) ? @"C:\\apps\\compute\\cfg\\config.json" : ConfigPath;
+  string url = "http://4.206.116.20/grasshopper"; string key = "p2robot-13a6-48f3-b24e-2025computeX"; string tok = "";
+  try {
+    if (File.Exists(path)) {
+      var js = new JavaScriptSerializer();
+      var dict = js.Deserialize<Dictionary<string, object>>(File.ReadAllText(path));
+      if (dict != null) {
+        if (dict.ContainsKey("ComputeUrl")) url = Convert.ToString(dict["ComputeUrl"]);
+        if (dict.ContainsKey("ApiKey"))     key = Convert.ToString(dict["ApiKey"]);
+        if (dict.ContainsKey("AuthToken"))  tok = Convert.ToString(dict["AuthToken"]);
+      }
+    }
+  } catch {}
+  ComputeUrl = url; ApiKey = key; AuthToken = tok;
+}
+      ]]></Code>
+      <Inputs>
+        <Input name="ConfigPath" type="System.String" access="item" default="C:\\apps\\compute\\cfg\\config.json" />
+      </Inputs>
+      <Outputs>
+        <Output name="ComputeUrl" type="System.String" access="item" />
+        <Output name="ApiKey" type="System.String" access="item" />
+        <Output name="AuthToken" type="System.String" access="item" />
+      </Outputs>
+    </Chunk>
+
+    <Chunk name="ScriptCSharp" nickName="CallCompute" guid="f2222222-2222-2222-2222-222222222222">
+      <Code><![CDATA[
+// Inputs: string ComputeUrl, string ApiKey, string AuthToken, List<double> DesignVariables, int Iterations
+// Outputs: List<double> BestDesign, string Status
+using System; using System.Linq; using System.Net; using System.Text; using System.IO; using System.Collections.Generic; using System.Web.Script.Serialization;
+class GHVal { public string type; public string data; public GHVal(string t, string d){ type=t; data=d; } }
+class InnerTree { public Dictionary<string, List<GHVal>> InnerTree = new Dictionary<string, List<GHVal>>(); }
+class ValueEntry { public string ParamName; public InnerTree ParamValue = new InnerTree(); }
+class RequestBody { public string algo; public bool pointer = true; public List<ValueEntry> values = new List<ValueEntry>(); }
+void RunScript(string ComputeUrl, string ApiKey, string AuthToken, List<double> DesignVariables, int Iterations, ref object BestDesign, ref object Status)
+{
+  string algoPath = "hops.ghx"; // compute-side file
+  var req = new RequestBody{ algo = algoPath, pointer = true };
+  var dv = new ValueEntry{ ParamName = "DesignVariables" }; dv.ParamValue.InnerTree["0"] = new List<GHVal>();
+  foreach (var d in (DesignVariables ?? new List<double>())) dv.ParamValue.InnerTree["0"].Add(new GHVal("System.Double", d.ToString("R")));
+  req.values.Add(dv);
+  var it = new ValueEntry{ ParamName = "Iterations" }; it.ParamValue.InnerTree["0"] = new List<GHVal>{ new GHVal("System.Int32", Iterations.ToString()) };
+  req.values.Add(it);
+  var js = new JavaScriptSerializer(); string json = js.Serialize(req);
+  var http = (HttpWebRequest)WebRequest.Create(ComputeUrl); http.Method = "POST"; http.ContentType = "application/json";
+  if (!string.IsNullOrWhiteSpace(ApiKey))    http.Headers["RhinoComputeKey"] = ApiKey;
+  if (!string.IsNullOrWhiteSpace(AuthToken)) http.Headers["Authorization"]    = "Bearer " + AuthToken;
+  using (var sw = new StreamWriter(http.GetRequestStream())) sw.Write(json);
+  try{
+    var resp = (HttpWebResponse)http.GetResponse(); string body; using (var sr = new StreamReader(resp.GetResponseStream())) body = sr.ReadToEnd();
+    var dict = js.Deserialize<Dictionary<string, object>>(body); var values = dict["values"] as object[]; var bestOut = new List<double>(); string status = "OK";
+    if (values != null){ foreach (var v in values){ var vd = v as Dictionary<string, object>; var name = Convert.ToString(vd["ParamName"]); var pv = vd["InnerTree"] as Dictionary<string, object>; if (pv!=null && pv.ContainsKey("0")){ var arr = pv["0"] as object[]; if (arr!=null){ if (name=="BestDesign"){ foreach (var a in arr){ var ad = a as Dictionary<string, object>; if (ad!=null && Convert.ToString(ad["type"]).Contains("Double")) bestOut.Add(double.Parse(Convert.ToString(ad["data"]))); } } else if (name=="Status" && arr.Length>0){ var ad = arr[0] as Dictionary<string, object>; status = (ad!=null)? Convert.ToString(ad["data"]): status; } } } } }
+    BestDesign = bestOut; Status = status;
+  } catch (WebException ex){ try{ using (var sr = new StreamReader(ex.Response.GetResponseStream())) Status = "HTTP "+(ex.Response as HttpWebResponse)?.StatusCode+" :: "+sr.ReadToEnd(); } catch { Status = ex.Message; } BestDesign = DesignVariables ?? new List<double>(); }
+}
+      ]]></Code>
+      <Inputs>
+        <Input name="ComputeUrl" type="System.String" access="item" />
+        <Input name="ApiKey" type="System.String" access="item" />
+        <Input name="AuthToken" type="System.String" access="item" />
+        <Input name="DesignVariables" type="System.Double" access="list" default="0.2;0.4;0.6" />
+        <Input name="Iterations" type="System.Int32" access="item" default="5" />
+      </Inputs>
+      <Outputs>
+        <Output name="BestDesign" type="System.Double" access="list" />
+        <Output name="Status" type="System.String" access="item" />
+      </Outputs>
+    </Chunk>
+  </Definition>
+</GH_Document>
