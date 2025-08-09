@@ -20,6 +20,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: Placeholder sweep (fail if placeholders remain)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git grep -nE '<SECRET>|CHANGEME|PLACEHOLDER' -- . ':!artifact_runs.json' ; then
+            echo "ERROR: Placeholder tokens found."
+            exit 1
+          fi
+          echo "No placeholder tokens found."
+      - name: Secrets preflight (index-only; allow missing)
+        run: |
+          python tools/check_required_secrets.py --require OTEL_EXPORTER_OTLP_ENDPOINT --allow-missing OTEL_EXPORTER_OTLP_ENDPOINT --print-ok || true
       - name: Regenerate artifact_index.json
         run: |
           python tools/regen_artifact_index.py --root . --index artifact_index.json --ci

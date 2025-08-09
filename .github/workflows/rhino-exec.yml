@@ -23,6 +23,10 @@ jobs:
         shell: pwsh
         run: |
           "SP_ENV=ca-hfx" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Secrets preflight (Windows requires Rhino)
+        shell: bash
+        run: |
+          python tools/check_required_secrets.py --require RHINO_CLOUDZOO_EMAIL RHINO_CLOUDZOO_PW --print-ok
       - name: Execute shadow module smoke test
         shell: pwsh
         run: |

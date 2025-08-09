@@ -112,3 +112,6 @@ venv/
 # Artifacts
 artifact_runs.json
 *.log
+.env
+.env.local
+*.bak
