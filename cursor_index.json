@@ -1,69 +1,69 @@
 {
   "Cursor Index": {
-    "generated_at": "2025-08-09T12:00:00Z",
-    "version": "1.0.0",
-    "source": "Rhino Developer Docs",
     "docs": [
       {
-        "id": "RhinoCommon",
-        "title": "RhinoCommon SDK",
-        "url": "https://developer.rhino3d.com/api/RhinoCommon/",
         "category": "SDK",
-        "last_updated": "2025-07-15",
-        "language": "en",
-        "version": "7.x",
-        "notes": "Core Rhino .NET interop API"
-      },
-      {
+        "checksum": "sha256:f4e4932c1a9656b0a145e39c2ea896659435d6a62022fcf06ed7f9a00895f335",
         "id": "GrasshopperSDK",
+        "language": "en",
+        "last_updated": "2025-06-20",
         "title": "Grasshopper SDK",
         "url": "https://developer.rhino3d.com/guides/grasshopper-sdk/",
-        "category": "SDK",
-        "last_updated": "2025-06-20",
-        "language": "en",
-        "version": "1.0",
-        "notes": "GH component development and scripting"
+        "version": "1.0"
       },
       {
+        "category": "SDK",
+        "checksum": "sha256:88a490b8bf4f36bd4005ddf84d0f18107b590809365e956a2ae9654b82ed84d7",
+        "id": "Rhino3dm",
+        "language": "en",
+        "last_updated": "2025-04-01",
+        "title": "Rhino3dm",
+        "url": "https://github.com/mcneel/rhino3dm",
+        "version": "latest"
+      },
+      {
+        "category": "SDK",
+        "checksum": "sha256:59658d2814d730632f4c9ddcfd2789339688c99981d0fe7f857c3fc82b8e8c3c",
+        "id": "RhinoCommon",
+        "language": "en",
+        "last_updated": "2025-07-15",
+        "title": "RhinoCommon SDK",
+        "url": "https://developer.rhino3d.com/api/RhinoCommon/",
+        "version": "7.x"
+      },
+      {
+        "category": "Compute",
+        "checksum": "sha256:12a53fe40722868cc9a442308c2af49d8cf99f8a7c42f8df2cc97406bbc97aed",
         "id": "RhinoCompute",
+        "language": "en",
+        "last_updated": "2025-05-10",
         "title": "Rhino Compute API",
         "url": "https://developer.rhino3d.com/guides/rhinoCompute/",
-        "category": "Compute",
-        "last_updated": "2025-05-10",
-        "language": "en",
-        "version": "latest",
-        "notes": "REST API for Rhino/Grasshopper compute"
+        "version": "latest"
       },
       {
-        "id": "Rhino3dm",
-        "title": "Rhino3dm (3D model I/O)",
-        "url": "https://github.com/mcneel/rhino3dm",
-        "category": "SDK",
-        "last_updated": "2025-04-01",
-        "language": "en",
-        "version": "latest",
-        "notes": "Cross-language 3D model library"
-      },
-      {
-        "id": "RhinoInside",
-        "title": "Rhino.Inside",
-        "url": "https://www.rhinoinside.com/",
-        "category": "Interop",
-        "last_updated": "2025-07-01",
-        "language": "en",
-        "version": "latest",
-        "notes": "Embed Rhino in other apps (e.g., Revit, CAD)"
-      },
-      {
+        "category": "Portal",
+        "checksum": "sha256:fb8c91279dbe0d4c35d4ce2e933369dcd2c911e1e31498069572464527d777af",
         "id": "RhinoDeveloperCenter",
+        "language": "en",
+        "last_updated": "2025-08-01",
         "title": "Rhino Developer Center",
         "url": "https://developer.rhino3d.com/",
-        "category": "Portal",
-        "last_updated": "2025-08-01",
+        "version": "latest"
+      },
+      {
+        "category": "Interop",
+        "checksum": "sha256:ffd3c818de184166894884053175493dd52d53e2bf158f143af2c378541c1c46",
+        "id": "RhinoInside",
         "language": "en",
-        "version": "latest",
-        "notes": "Main landing for Rhino SDK docs and guides"
+        "last_updated": "2025-07-01",
+        "title": "Rhino.Inside",
+        "url": "https://www.rhinoinside.com/",
+        "version": "latest"
       }
-    ]
+    ],
+    "generated_at": "2025-08-09T03:30:17.975225Z",
+    "source": "Rhino Developer Docs",
+    "version": "1.0.0"
   }
 }

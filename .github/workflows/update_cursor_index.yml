@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Regenerate cursor index
-        run: python regen_cursor_index.py
+        run: python regen_cursor_index.py --crawl --timeout 20
       - name: Show diff
         run: |
           git config user.email "ci@example.com"

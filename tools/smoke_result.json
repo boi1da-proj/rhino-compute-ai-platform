@@ -1,0 +1,23 @@
+{
+  "run_id": "2966e9aa-5f72-4ade-b276-b2c2e302e9a2",
+  "module": "softlyplease.shadow_modules.compute_aabb",
+  "environment_label": "dev",
+  "summary": {
+    "duration_ms": 99,
+    "status": "ok"
+  },
+  "result": {
+    "bbox": {
+      "min": [
+        -1,
+        0,
+        -2
+      ],
+      "max": [
+        1,
+        5,
+        3
+      ]
+    }
+  }
+}

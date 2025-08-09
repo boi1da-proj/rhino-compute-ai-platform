@@ -1,23 +1,98 @@
 {
-  "meta": {
-    "project": "SoftlyPlease",
-    "index_version": 1,
-    "generated_at": 0,
-    "generator": "tools/regen_artifact_index.py",
-    "environments": [
-      { "label": "dev", "runtime": "process" },
-      { "label": "ci", "runtime": "process" },
-      { "label": "ca-hfx", "runtime": "process|container" }
-    ],
-    "deployment": {
-      "sandbox_policy": "strict",
-      "container_image": "ghcr.io/softlyplease/shadow-rhino8:8.9.24180-windows-ltsc2022",
-      "feature_flags": { "enableShadowV2": true }
+  "artifacts": [
+    {
+      "checksum_sha256": "64e2986a02a053804ad47294c3abc7b30de0d826b4674341331f30b937f3b876",
+      "last_modified": 1754709674,
+      "logical_name": "README.md",
+      "module_name": null,
+      "path": "README.md",
+      "platform_tags": [
+        "any"
+      ],
+      "size_bytes": 1324,
+      "type": "file"
     },
-    "localization": {
-      "default": "en",
-      "available": ["en","fr","es","de","zh-CN","ja","ko","ru","ar","pt","it"]
+    {
+      "checksum_sha256": "2c02284e1fbf60882767eee5d737b05e9c89ec0f4e672c3d7101fd68f4c169af",
+      "last_modified": 1754709657,
+      "logical_name": "shadow_config.json",
+      "module_name": null,
+      "path": "shadow_config.json",
+      "platform_tags": [
+        "any"
+      ],
+      "size_bytes": 638,
+      "type": "file"
+    },
+    {
+      "checksum_sha256": "28f4b73756a6e0813443af9ee6afd810f8b4742875cd8096df04fd475b44cc8e",
+      "last_modified": 1754709657,
+      "logical_name": "softlyplease.shadow_modules.compute_aabb",
+      "module_name": "softlyplease.shadow_modules.compute_aabb",
+      "path": "shadow_modules/compute_aabb.py",
+      "platform_tags": [
+        "any"
+      ],
+      "size_bytes": 347,
+      "type": "shadow_module"
+    },
+    {
+      "checksum_sha256": "d23e8e1685f8f9ffe04863d98e192dc25512eadcfc60d5e978c7a135ec441252",
+      "last_modified": 1754709657,
+      "logical_name": "tools/run_shadow.py",
+      "module_name": null,
+      "path": "tools/run_shadow.py",
+      "platform_tags": [
+        "any"
+      ],
+      "size_bytes": 6149,
+      "type": "file"
     }
-  },
-  "artifacts": []
+  ],
+  "meta": {
+    "deployment": {
+      "container_image": "ghcr.io/softlyplease/shadow-rhino8:8.9.24180-windows-ltsc2022",
+      "feature_flags": {
+        "enableShadowV2": true
+      },
+      "sandbox_policy": "strict"
+    },
+    "environments": [
+      {
+        "label": "dev",
+        "runtime": "process"
+      },
+      {
+        "label": "ci",
+        "runtime": "process"
+      },
+      {
+        "label": "ca-hfx",
+        "runtime": "process|container"
+      }
+    ],
+    "generated_at": 1754709981,
+    "generator": "tools/regen_artifact_index.py",
+    "index_version": 1,
+    "localization": {
+      "available": [
+        "en",
+        "fr",
+        "es",
+        "de",
+        "zh-CN",
+        "ja",
+        "ko",
+        "ru",
+        "ar",
+        "pt",
+        "it"
+      ],
+      "default": "en"
+    },
+    "module_allowlist": [
+      "softlyplease.shadow_modules.compute_aabb"
+    ],
+    "project": "SoftlyPlease"
+  }
 }
