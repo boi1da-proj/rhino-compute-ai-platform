@@ -37,15 +37,15 @@
       "type": "shadow_module"
     },
     {
-      "checksum_sha256": "d23e8e1685f8f9ffe04863d98e192dc25512eadcfc60d5e978c7a135ec441252",
-      "last_modified": 1754709657,
+      "checksum_sha256": "f4c965b1afc70c26a782f05dad3dc6004aecdec4b75a9421f79e2abbd9a271e2",
+      "last_modified": 1754710629,
       "logical_name": "tools/run_shadow.py",
       "module_name": null,
       "path": "tools/run_shadow.py",
       "platform_tags": [
         "any"
       ],
-      "size_bytes": 6149,
+      "size_bytes": 6463,
       "type": "file"
     }
   ],
@@ -71,7 +71,7 @@
         "runtime": "process|container"
       }
     ],
-    "generated_at": 1754709981,
+    "generated_at": 1754710934,
     "generator": "tools/regen_artifact_index.py",
     "index_version": 1,
     "localization": {
