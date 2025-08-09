@@ -52,11 +52,17 @@ jobs:
           name: node-app
           path: ./deploy
 
-      - name: Deploy to Azure Web App
+      - name: Zip build folder
+        working-directory: ./deploy
+        run: |
+          cd build
+          zip -qr ../build.zip .
+
+      - name: Deploy to Azure Web App (zip)
         uses: azure/webapps-deploy@v3
         with:
           app-name: soft
           slot-name: Production
-          package: ./deploy/build
+          package: ./deploy/build.zip
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
 
