@@ -1,6 +1,6 @@
 # Deploy FE changes to VM (Windows PowerShell)
 param(
-    [string]$FERepoURL = "https://github.com/boi1da-proj/Soft.Geometry.git",
+    [string]$FERepoURL = "https://github.com/boi1da-proj/SoftGeometry.git",
     [string]$FEPathOnVM = "C:\inetpub\wwwroot\Soft.Geometry",
     [string]$AzureResourceGroup = "",
     [string]$AzureWebAppName = ""
