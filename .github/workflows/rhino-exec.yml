@@ -1,0 +1,43 @@
+name: Rhino Exec (Halifax)
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-shadow-modules:
+    name: Shadow Smoke Test
+    runs-on: [self-hosted, windows, ca-hfx]
+    environment: ca-hfx
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Configure OTEL endpoint
+        shell: pwsh
+        run: |
+          "OTEL_EXPORTER_OTLP_ENDPOINT=${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Set environment label
+        shell: pwsh
+        run: |
+          "SP_ENV=ca-hfx" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Execute shadow module smoke test
+        shell: pwsh
+        run: |
+          python tools/run_shadow.py --config shadow_config.json --in tools/smoke_payload.json --out tools/smoke_result.json
+      - name: Ensure artifact_index.json not mutated
+        shell: pwsh
+        run: |
+          git diff --exit-code -- artifact_index.json
+      - name: Upload smoke result
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke_result
+          path: tools/smoke_result.json
+      - name: Upload run logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: shadow_runs
+          path: artifact_runs.json

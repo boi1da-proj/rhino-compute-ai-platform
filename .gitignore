@@ -96,3 +96,19 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# Artifacts
+artifact_runs.json
+*.log

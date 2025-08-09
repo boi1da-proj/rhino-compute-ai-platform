@@ -1,0 +1,17 @@
+{
+  "title": "SoftlyPlease Shadow",
+  "description": "Rhino/Grasshopper 向けのアーティファクトインデックス駆動のシャドウモジュール。",
+  "run_started": "実行を開始",
+  "run_succeeded": "実行に成功",
+  "run_failed": "実行に失敗",
+  "missing_runner": "tools/run_shadow.py が見つかりません。リポジトリに追加してください。",
+  "missing_module": "シャドウモジュールが見つかりません。",
+  "sandbox_policy_strict": "厳格なサンドボックス ポリシーが有効です。"
+  ,"app.envLabel": "Environment"
+  ,"status.running": "Running…"
+  ,"status.ok": "OK"
+  ,"status.error": "Error"
+  ,"error.module_not_allowed": "Module not indexed or allowed. Regenerate artifact index."
+  ,"error.checksum_mismatch": "Module checksum mismatch. Regenerate artifact index."
+  ,"error.timeout": "Execution timed out."
+}

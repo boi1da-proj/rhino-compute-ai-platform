@@ -1,0 +1,17 @@
+{
+  "title": "SoftlyPlease Shadow",
+  "description": "用于 Rhino/Grasshopper 的基于工件索引的影子模块。",
+  "run_started": "运行已开始",
+  "run_succeeded": "运行成功",
+  "run_failed": "运行失败",
+  "missing_runner": "缺少 tools/run_shadow.py。请将其添加到仓库。",
+  "missing_module": "未找到影子模块。",
+  "sandbox_policy_strict": "已启用严格沙盒策略。"
+  ,"app.envLabel": "Environment"
+  ,"status.running": "Running…"
+  ,"status.ok": "OK"
+  ,"status.error": "Error"
+  ,"error.module_not_allowed": "Module not indexed or allowed. Regenerate artifact index."
+  ,"error.checksum_mismatch": "Module checksum mismatch. Regenerate artifact index."
+  ,"error.timeout": "Execution timed out."
+}

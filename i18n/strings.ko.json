@@ -1,0 +1,17 @@
+{
+  "title": "SoftlyPlease Shadow",
+  "description": "Rhino/Grasshopper용 아티팩트 인덱스 기반 섀도 모듈입니다.",
+  "run_started": "실행 시작",
+  "run_succeeded": "실행 성공",
+  "run_failed": "실행 실패",
+  "missing_runner": "tools/run_shadow.py가 없습니다. 저장소에 추가하세요.",
+  "missing_module": "섀도 모듈을 찾을 수 없습니다.",
+  "sandbox_policy_strict": "엄격한 샌드박스 정책이 활성화되었습니다."
+  ,"app.envLabel": "Environment"
+  ,"status.running": "Running…"
+  ,"status.ok": "OK"
+  ,"status.error": "Error"
+  ,"error.module_not_allowed": "Module not indexed or allowed. Regenerate artifact index."
+  ,"error.checksum_mismatch": "Module checksum mismatch. Regenerate artifact index."
+  ,"error.timeout": "Execution timed out."
+}

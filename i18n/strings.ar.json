@@ -1,0 +1,17 @@
+{
+  "title": "SoftlyPlease Shadow",
+  "description": "وحدات ظل مبنية على فهرس القطع البرمجية لـ Rhino/Grasshopper.",
+  "run_started": "بدأ التشغيل",
+  "run_succeeded": "نجح التشغيل",
+  "run_failed": "فشل التشغيل",
+  "missing_runner": "الملف tools/run_shadow.py غير موجود. يرجى إضافته إلى المستودع.",
+  "missing_module": "وحدة الظل غير موجودة.",
+  "sandbox_policy_strict": "سياسة العزل الصارمة مفعلة."
+  ,"app.envLabel": "Environment"
+  ,"status.running": "Running…"
+  ,"status.ok": "OK"
+  ,"status.error": "Error"
+  ,"error.module_not_allowed": "Module not indexed or allowed. Regenerate artifact index."
+  ,"error.checksum_mismatch": "Module checksum mismatch. Regenerate artifact index."
+  ,"error.timeout": "Execution timed out."
+}

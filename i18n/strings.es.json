@@ -1,0 +1,17 @@
+{
+  "title": "SoftlyPlease Shadow",
+  "description": "Módulos sombra impulsados por un índice de artefactos para Rhino/Grasshopper.",
+  "run_started": "Ejecución iniciada",
+  "run_succeeded": "Ejecución exitosa",
+  "run_failed": "Ejecución fallida",
+  "missing_runner": "Falta tools/run_shadow.py. Por favor, agréguelo al repositorio.",
+  "missing_module": "Módulo sombra no encontrado.",
+  "sandbox_policy_strict": "La política de sandbox estricta está habilitada."
+  ,"app.envLabel": "Environment"
+  ,"status.running": "Running…"
+  ,"status.ok": "OK"
+  ,"status.error": "Error"
+  ,"error.module_not_allowed": "Module not indexed or allowed. Regenerate artifact index."
+  ,"error.checksum_mismatch": "Module checksum mismatch. Regenerate artifact index."
+  ,"error.timeout": "Execution timed out."
+}

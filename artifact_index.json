@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "project": "SoftlyPlease",
+    "index_version": 1,
+    "generated_at": 0,
+    "generator": "tools/regen_artifact_index.py",
+    "environments": [
+      { "label": "dev", "runtime": "process" },
+      { "label": "ci", "runtime": "process" },
+      { "label": "ca-hfx", "runtime": "process|container" }
+    ],
+    "deployment": {
+      "sandbox_policy": "strict",
+      "container_image": "ghcr.io/softlyplease/shadow-rhino8:8.9.24180-windows-ltsc2022",
+      "feature_flags": { "enableShadowV2": true }
+    },
+    "localization": {
+      "default": "en",
+      "available": ["en","fr","es","de","zh-CN","ja","ko","ru","ar","pt","it"]
+    }
+  },
+  "artifacts": []
+}

@@ -1,0 +1,17 @@
+{
+  "title": "SoftlyPlease Shadow",
+  "description": "Теневые модули для Rhino/Grasshopper на основе индекса артефактов.",
+  "run_started": "Запуск начат",
+  "run_succeeded": "Запуск выполнен успешно",
+  "run_failed": "Сбой выполнения",
+  "missing_runner": "Отсутствует tools/run_shadow.py. Добавьте его в репозиторий.",
+  "missing_module": "Теневой модуль не найден.",
+  "sandbox_policy_strict": "Включена строгая политика песочницы."
+  ,"app.envLabel": "Environment"
+  ,"status.running": "Running…"
+  ,"status.ok": "OK"
+  ,"status.error": "Error"
+  ,"error.module_not_allowed": "Module not indexed or allowed. Regenerate artifact index."
+  ,"error.checksum_mismatch": "Module checksum mismatch. Regenerate artifact index."
+  ,"error.timeout": "Execution timed out."
+}

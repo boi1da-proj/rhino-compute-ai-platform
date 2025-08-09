@@ -1,0 +1,22 @@
+runtime_type: process
+sandbox_policy: strict
+shadow_module_search_path:
+  - ./shadow_modules
+dependencies:
+  - numpy>=1.25.0
+  - rhino3dm>=8.0.0
+environment_label: dev
+artifact_index_path: ./artifact_index.json
+feature_flags:
+  enableShadowV2: true
+  useContainerRuntime: false
+  logRunsToIndex: false
+  strictSandbox: true
+  otelEnabled: true
+rollback_on_failure: true
+observability:
+  otel_service_name: softlyplease-shadow
+  otel_resource:
+    region: ca-hfx
+    env: dev
+  otel_endpoint_env: OTEL_EXPORTER_OTLP_ENDPOINT
