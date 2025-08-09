@@ -1,0 +1,35 @@
+name: Update Cursor Index (Rhino Docs)
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Regenerate cursor index
+        run: python regen_cursor_index.py
+      - name: Show diff
+        run: |
+          git config user.email "ci@example.com"
+          git config user.name "CI Bot"
+          ls -la
+          git status
+          git diff || true
+      - name: Commit cursor_index.json (optional)
+        if: success()
+        run: |
+          git add cursor_index.json
+          if [ -n "$(git diff --cached)" ]; then
+            git commit -m "ci(cursor): regen cursor_index.json from docs_manifest.json"
+            echo "Cursor index updated in PR branch."
+          else
+            echo "No changes to commit."
+          fi

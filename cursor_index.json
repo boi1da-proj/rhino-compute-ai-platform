@@ -1,0 +1,69 @@
+{
+  "Cursor Index": {
+    "generated_at": "2025-08-09T12:00:00Z",
+    "version": "1.0.0",
+    "source": "Rhino Developer Docs",
+    "docs": [
+      {
+        "id": "RhinoCommon",
+        "title": "RhinoCommon SDK",
+        "url": "https://developer.rhino3d.com/api/RhinoCommon/",
+        "category": "SDK",
+        "last_updated": "2025-07-15",
+        "language": "en",
+        "version": "7.x",
+        "notes": "Core Rhino .NET interop API"
+      },
+      {
+        "id": "GrasshopperSDK",
+        "title": "Grasshopper SDK",
+        "url": "https://developer.rhino3d.com/guides/grasshopper-sdk/",
+        "category": "SDK",
+        "last_updated": "2025-06-20",
+        "language": "en",
+        "version": "1.0",
+        "notes": "GH component development and scripting"
+      },
+      {
+        "id": "RhinoCompute",
+        "title": "Rhino Compute API",
+        "url": "https://developer.rhino3d.com/guides/rhinoCompute/",
+        "category": "Compute",
+        "last_updated": "2025-05-10",
+        "language": "en",
+        "version": "latest",
+        "notes": "REST API for Rhino/Grasshopper compute"
+      },
+      {
+        "id": "Rhino3dm",
+        "title": "Rhino3dm (3D model I/O)",
+        "url": "https://github.com/mcneel/rhino3dm",
+        "category": "SDK",
+        "last_updated": "2025-04-01",
+        "language": "en",
+        "version": "latest",
+        "notes": "Cross-language 3D model library"
+      },
+      {
+        "id": "RhinoInside",
+        "title": "Rhino.Inside",
+        "url": "https://www.rhinoinside.com/",
+        "category": "Interop",
+        "last_updated": "2025-07-01",
+        "language": "en",
+        "version": "latest",
+        "notes": "Embed Rhino in other apps (e.g., Revit, CAD)"
+      },
+      {
+        "id": "RhinoDeveloperCenter",
+        "title": "Rhino Developer Center",
+        "url": "https://developer.rhino3d.com/",
+        "category": "Portal",
+        "last_updated": "2025-08-01",
+        "language": "en",
+        "version": "latest",
+        "notes": "Main landing for Rhino SDK docs and guides"
+      }
+    ]
+  }
+}
