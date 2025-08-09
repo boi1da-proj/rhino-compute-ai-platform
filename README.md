@@ -1,3 +1,5 @@
+[![Build and deploy Node.js app to Azure Web App - soft](https://github.com/boi1da-proj/SoftGeometry/actions/workflows/azure-webapp.yml/badge.svg)](https://github.com/boi1da-proj/SoftGeometry/actions/workflows/azure-webapp.yml)
+
 # HelloEtoGH - Minimal Eto.Forms Starter
 
 > **Copy-paste starter** for Eto.Forms UI with Grasshopper-style host stub and artifact tracking

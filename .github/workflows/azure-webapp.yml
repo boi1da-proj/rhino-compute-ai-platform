@@ -2,7 +2,7 @@ name: Build and deploy Node.js app to Azure Web App - soft
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, local-sync-* ]
   workflow_dispatch:
 
 jobs:
@@ -17,23 +17,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build --if-present
+      - name: Include web.config for Windows App Service
+        run: |
+          mkdir -p build
+          if [ -f public/web.config ]; then cp public/web.config build/web.config; fi
 
       - name: Test
         run: npm test --if-present
 
-      - name: Upload artifact for deployment
+      - name: Upload artifact for deployment (build folder)
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: build
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,17 +50,24 @@ jobs:
           name: node-app
           path: ./deploy
 
-      - name: Azure login
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2473170F413A4950A433A8AA9DEF77D5 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8E39FD908B014CD59E26DD8ADC9D5D21 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6E0FEE592B6A4F85A40F64D52C27B01C }}
+      - name: Verify build output exists
+        run: |
+          test -d ./deploy/build || { echo "ERROR: ./deploy/build missing"; ls -la ./deploy; exit 1; }
+          ls -la ./deploy/build | head -100
 
-      - name: Deploy to Azure Web App
+      - name: Zip build folder
+        working-directory: ./deploy
+        run: |
+          cd build
+          zip -qr ../build.zip .
+
+      - name: List zip contents (debug)
+        run: unzip -l ./deploy/build.zip | sed -n '1,100p'
+
+      - name: Deploy to Azure Web App (zip)
         uses: azure/webapps-deploy@v3
         with:
           app-name: soft
-          slot-name: Production
-          package: ./deploy
+          package: ./deploy/build.zip
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
 
