@@ -25,6 +25,10 @@ jobs:
 
       - name: Build
         run: npm run build --if-present
+      - name: Include web.config for Windows App Service
+        run: |
+          mkdir -p build
+          if [ -f public/web.config ]; then cp public/web.config build/web.config; fi
 
       - name: Test
         run: npm test --if-present
