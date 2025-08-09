@@ -19,6 +19,8 @@ jobs:
         shell: pwsh
         run: |
           "OTEL_EXPORTER_OTLP_ENDPOINT=${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "RHINO_COMPUTE_TOKEN=${{ secrets.RHINO_COMPUTE_TOKEN }}" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "INTERNAL_API_KEY=${{ secrets.INTERNAL_API_KEY }}" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
       - name: Set environment label
         shell: pwsh
         run: |
@@ -26,7 +28,7 @@ jobs:
       - name: Secrets preflight (Windows requires Rhino)
         shell: bash
         run: |
-          python tools/check_required_secrets.py --require RHINO_CLOUDZOO_EMAIL RHINO_CLOUDZOO_PW --print-ok
+          python tools/check_required_secrets.py --require RHINO_CLOUDZOO_EMAIL RHINO_CLOUDZOO_PW RHINO_COMPUTE_TOKEN INTERNAL_API_KEY --print-ok
       - name: Execute shadow module smoke test
         shell: pwsh
         run: |

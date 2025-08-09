@@ -142,7 +142,7 @@ def main() -> int:
     except Exception:
         pass
 
-    # Optional OTEL span
+    # Optional OTEL span (and optional env presence flags)
     try:
         from opentelemetry import trace  # type: ignore
 
@@ -153,6 +153,9 @@ def main() -> int:
             span.set_attribute("env.label", envelope["environment_label"])
             span.set_attribute("duration.ms", duration_ms)
             span.set_attribute("status", status)
+            # Presence-only; never values
+            span.set_attribute("secret.RHINO_COMPUTE_TOKEN", "present" if os.getenv("RHINO_COMPUTE_TOKEN") else "absent")
+            span.set_attribute("secret.INTERNAL_API_KEY", "present" if os.getenv("INTERNAL_API_KEY") else "absent")
     except Exception:
         pass
 
