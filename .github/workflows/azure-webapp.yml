@@ -48,17 +48,11 @@ jobs:
           name: node-app
           path: ./deploy
 
-      - name: Azure login
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2473170F413A4950A433A8AA9DEF77D5 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8E39FD908B014CD59E26DD8ADC9D5D21 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6E0FEE592B6A4F85A40F64D52C27B01C }}
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: soft
           slot-name: Production
           package: ./deploy
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
 
